@@ -9,7 +9,8 @@ end
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.3'
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+# gem 'sqlite3'
+gem 'mysql2'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
@@ -53,6 +54,9 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
+group :production, :staging do
+  gem 'unicorn'
+end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
@@ -63,6 +67,7 @@ gem 'kaminari'#ページング
 gem 'bullet', group: :development
 
 gem 'refile', github: 'refile/refile', require: 'refile/rails'
+gem "refile-s3"
 gem 'refile-mini_magick', github: 'refile/refile-mini_magick'
 gem 'breadcrumbs_on_rails'
 

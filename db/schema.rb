@@ -12,13 +12,13 @@
 
 ActiveRecord::Schema.define(version: 20170926103642) do
 
-  create_table "categories", force: :cascade do |t|
+  create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "categoryname"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "orders", force: :cascade do |t|
+  create_table "orders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "post_id"
     t.integer "user_id"
     t.string "ordername"
@@ -29,15 +29,15 @@ ActiveRecord::Schema.define(version: 20170926103642) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "post_images", force: :cascade do |t|
-    t.integer "post_id"
+  create_table "post_images", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "post_id"
     t.string "image_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_post_images_on_post_id"
   end
 
-  create_table "posts", force: :cascade do |t|
+  create_table "posts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "title"
     t.integer "price"
     t.text "body"
@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 20170926103642) do
     t.index ["category_id"], name: "index_posts_on_category_id"
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -69,4 +69,5 @@ ActiveRecord::Schema.define(version: 20170926103642) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "post_images", "posts"
 end
